@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "storybook": "start-storybook -p 7007"
+    "storybook": "(adb reverse tcp:7007 tcp:7007 || true) && start-storybook"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.7",
@@ -16,6 +16,7 @@
     "axios": "^0.19.2",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-firebase": "^5.6.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "^0.7.3",
