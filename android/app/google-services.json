@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "242327564781",
+    "firebase_url": "https://runbuddy-c5733.firebaseio.com",
+    "project_id": "runbuddy-c5733",
+    "storage_bucket": "runbuddy-c5733.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242327564781:android:e418541f50419d54c937e4",
+        "android_client_info": {
+          "package_name": "com.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242327564781-1m6bthk4j5c6hfefsnfk23j59003j9gf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobile",
+            "certificate_hash": "a908606355369d7db85e7c253a39ef0f2b4141e3"
+          }
+        },
+        {
+          "client_id": "242327564781-kp413qqo29sbdidn80jimdaehnp1atff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Mb0Ra6_S-jrHqX_5OuHpur0dTnggEDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242327564781-kp413qqo29sbdidn80jimdaehnp1atff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
