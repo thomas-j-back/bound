@@ -34,8 +34,22 @@ target 'mobile' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
 
+
+  # #Pods for firebase functionality
+  # pod 'Firebase/AdMob', '~> 6.13.0'
+  # pod 'Firebase/Auth', '~> 6.13.0'
+  # pod 'GoogleSignIn', '~> 4.4'
+  # pod 'Firebase/Database', '~> 6.13.0'
+  # pod 'Firebase/Functions', '~> 6.13.0'
+  # pod 'Firebase/DynamicLinks', '~> 6.13.0'
+  # pod 'Firebase/Firestore', '~> 6.13.0'
+  # pod 'Firebase/Messaging', '~> 6.13.0'
+  # pod 'Firebase/RemoteConfig', '~> 6.13.0'
+  # pod 'Firebase/Storage', '~> 6.13.0'
+  # pod 'Firebase/Performance', '~> 6.13.0'
+  # pod 'Fabric', '~> 1.10.2'
+  # pod 'Crashlytics', '~> 3.14.0'
 
   target 'mobileTests' do
     inherit! :search_paths

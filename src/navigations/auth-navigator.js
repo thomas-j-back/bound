@@ -1,5 +1,4 @@
 import {createStackNavigator} from 'react-navigation-stack';
-
 import LoginScreen from '_scenes/login';
 
 const AuthNavigatorConfig = {
