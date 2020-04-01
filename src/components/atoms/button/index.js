@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Button} from 'react-native';
 import {Spacing, Mixins, Colors} from '../../../styles/';
 export default class ButtonInput extends Component {
-  constructor() {
-    this.className = this.props.class;
+  constructor(props) {
+    super(props);
+    this.className = this.props.className;
   }
 
   generateClassStyle() {
@@ -25,10 +26,10 @@ export default class ButtonInput extends Component {
   render() {
     return (
       <Button
+        title={this.props.children}
         style={[this.generateClassStyle(), this.props.style]}
-        onPress={this.props.onPress}>
-        {this.props.children}
-      </Button>
+        onPress={this.props.onPress ? this.props.onPress : () => {}}
+      />
     );
   }
 }

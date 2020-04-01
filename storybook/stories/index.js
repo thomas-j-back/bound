@@ -16,16 +16,16 @@ storiesOf('Welcome', module).add('to Storybook', () => (
 
 storiesOf('ButtonInput', module)
   .addDecorator(getStory => <CenterView>{getStory()}</CenterView>)
-  .add('Neutral State', () => {
-    <ButtonInput className="primary" onPress={action('Hello There')}>
+  .add('Neutral State', () => (
+    <ButtonInput onPress={action('clicked-text')} className="primary">
       Hello Friends
-    </ButtonInput>;
-  })
-  .add('Danger State', () => {
-    <ButtonInput className="danger" onPress={action('Hello There')}>
+    </ButtonInput>
+  ))
+  .add('Danger State', () => (
+    <ButtonInput onPress={action('clicked-emoji')} className="danger">
       No
-    </ButtonInput>;
-  });
+    </ButtonInput>
+  ));
 
 storiesOf('Button', module)
   .addDecorator(getStory => <CenterView>{getStory()}</CenterView>)

@@ -5,11 +5,13 @@ import ButtonInput from '_atoms/button';
 export default ButtonInput;
 
 ButtonInput.defaultProps = {
-  children: null,
-  onPress: () => {},
+  children: 'SomeLabel',
+  onPress: null,
+  className: 'primary',
 };
 
 ButtonInput.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.string,
   onPress: PropTypes.func,
+  className: PropTypes.string,
 };
