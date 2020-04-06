@@ -5,7 +5,7 @@ import Button from '_atoms/button';
 import {storiesOf} from '@storybook/react-native';
 import {action} from '@storybook/addon-actions';
 import {linkTo} from '@storybook/addon-links';
-import CenterView from '../CenterView';
+import CenterView from '../../../../storybook/stories/CenterView';
 
 export default Button;
 

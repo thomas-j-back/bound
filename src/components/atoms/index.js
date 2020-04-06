@@ -1,1 +1,3 @@
-export {default as HelloWorld} from './hello-world';
+export {HelloWorld} from './hello-world';
+export {Button} from './button';
+export {InputField} from './input-field';

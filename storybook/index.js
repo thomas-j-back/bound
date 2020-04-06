@@ -6,6 +6,8 @@ import './rn-addons';
 // import stories
 configure(() => {
   require('./stories');
+  require('_atoms/button/stories.js');
+  require('_atoms/input-field/stories.js');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {Typography, Spacing, Color} from '_styles';
@@ -5,13 +6,32 @@ import {Typography, Spacing, Color} from '_styles';
 export default class InputField extends React.Component {
   constructor(props) {
     super(props);
+
+    //Create stylings based on className property
+  }
+
+  generateClassStyles() {
+    switch (this.props.className) {
+    }
+  }
+
+  /**
+   * Only return text if label provided
+   */
+  getLabel() {
+    if (this.props.label) {
+      return <Text>{this.props.label}</Text>;
+    }
   }
 
   render() {
     return (
       <View>
-        <Text>{this.props.label}</Text>
-        <TextInput />
+        {this.getLabel()}
+        <TextInput
+          placeholder={this.props.placeholder}
+          onChangeText={(text) => this.props.onChangeText(text)}
+        />
       </View>
     );
   }
