@@ -1,35 +1,72 @@
 import React, {Component} from 'react';
-import {Button} from 'react-native';
+import {TouchableHighlight, Text} from 'react-native';
 import {Spacing, Mixins, Colors} from '../../../styles/';
-export default class ButtonInput extends Component {
+export default class Button extends Component {
+  //General purpose button
   constructor(props) {
     super(props);
     this.className = this.props.className;
+    this.state = {
+      style: [],
+      underlayColor: Colors.BASE,
+      executing: false,
+    };
+  }
+
+  componentWillMount() {
+    this.generateClassStyle();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.className !== this.props.className) {
+      this.generateClassStyle();
+    }
   }
 
   generateClassStyle() {
     //generate styles based on button state/type
-    let styles = {};
-    styles.margin = Mixins.margin(Spacing.BASE);
-    styles.padding = Mixins.padding(Spacing.BASE);
-    styles.color = Colors.WHITE;
+    let style = {};
+    let textStyle = {};
+    let underlayColor = Colors.PRIMARY;
+    style = {
+      ...style,
+      ...Mixins.padding(Spacing.SCALE_4),
+      //...Mixins.margin(Spacing.SCALE_4),
+    };
+    textStyle.color = Colors.WHITE;
+    style.width = '100%';
+    style.borderRadius = 5;
+    style.alignItems = 'center';
+    style.justifyContent = 'center';
     switch (this.className) {
       case 'primary':
-        styles.backgroundColor = Colors.PRIMARY;
+        style.backgroundColor = Colors.PRIMARY;
         break;
       case 'danger':
-        styles.backgroundColor = Colors.WARNING;
+        style.backgroundColor = Colors.WARNING;
         break;
+      case 'disabled':
+        style.backgroundColor = Colors.GRAY_LIGHT;
+        textStyle.color = Colors.GRAY_MEDIUM;
     }
-    return styles;
+    this.setState({underlayColor: underlayColor});
+    this.setState({style: style});
+    this.setState({textStyle: textStyle});
   }
+
   render() {
+    // alert(JSON.stringify(this.state.style))
     return (
-      <Button
-        title={this.props.children}
-        style={[this.generateClassStyle(), this.props.style]}
-        onPress={this.props.onPress ? this.props.onPress : () => {}}
-      />
+      <TouchableHighlight
+        underlayColor={this.state.underlayColor}
+        activeOpacity={this.props.className === 'disabled' ? 1 : 0.6}
+        style={this.state.style}
+        onPress={
+          this.props.className !== 'disabled' && this.props.onPress
+            ? this.props.onPress
+            : () => {}
+        }>
+        <Text style={this.state.textStyle}>{this.props.title}</Text>
+      </TouchableHighlight>
     );
   }
 }
