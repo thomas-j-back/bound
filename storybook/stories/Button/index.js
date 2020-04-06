@@ -5,6 +5,7 @@ import Button from '_atoms/button';
 import {storiesOf} from '@storybook/react-native';
 import {action} from '@storybook/addon-actions';
 import {linkTo} from '@storybook/addon-links';
+import CenterView from '../CenterView';
 
 export default Button;
 
@@ -19,3 +20,24 @@ Button.propTypes = {
   onPress: PropTypes.func,
   className: PropTypes.string,
 };
+
+storiesOf('Button', module)
+  // eslint-disable-next-line prettier/prettier
+  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
+  .add('Neutral', () => (
+    <Button title="Login" onPress={action('clicked-emoji')} />
+  ))
+  .add('Warning', () => (
+    <Button
+      title="Cancel"
+      onPress={action('clicked-emoji')}
+      className="danger"
+    />
+  ))
+  .add('Disabled', () => (
+    <Button
+      title="Accept"
+      onPress={action('clicked-emoji')}
+      className="disabled"
+    />
+  ));

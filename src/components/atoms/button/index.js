@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {TouchableHighlight, Text} from 'react-native';
-import {Spacing, Mixins, Colors} from '../../../styles/';
+import {Spacing, Mixins, Colors, Typography} from '_styles';
 export default class Button extends Component {
   //General purpose button
   constructor(props) {
@@ -26,19 +26,26 @@ export default class Button extends Component {
     //generate styles based on button state/type
     let style = {};
     let textStyle = {};
+
+    //Generate
     let underlayColor = Colors.PRIMARY;
     style = {
       ...style,
-      ...Mixins.padding(Spacing.SCALE_4),
-      //...Mixins.margin(Spacing.SCALE_4),
+      ...Mixins.padding(Spacing.SCALE_8),
     };
+
+    //Generate Style for Text Child
     textStyle.color = Colors.WHITE;
+    textStyle.fontSize = Typography.FONT_SIZE_16;
+    textStyle = {...textStyle, ...Typography.FONT_BOLD};
+
+    //Alignment of child label
     style.width = '100%';
     style.borderRadius = 5;
     style.alignItems = 'center';
     style.justifyContent = 'center';
     switch (this.className) {
-      case 'primary':
+      case 'primary' || '':
         style.backgroundColor = Colors.PRIMARY;
         break;
       case 'danger':
@@ -46,7 +53,8 @@ export default class Button extends Component {
         break;
       case 'disabled':
         style.backgroundColor = Colors.GRAY_LIGHT;
-        textStyle.color = Colors.GRAY_MEDIUM;
+        textStyle.color = Colors.GRAY_DARK;
+        underlayColor = style.backgroundColor;
     }
     this.setState({underlayColor: underlayColor});
     this.setState({style: style});

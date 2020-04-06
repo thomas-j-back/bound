@@ -1,14 +1,42 @@
 import React from 'react';
-import {SafeAreaView, Text, TouchableHighlight} from 'react-native';
+import {SafeAreaView, Text, Image} from 'react-native';
 import Button from '_atoms/button';
-const LoginScreen = ({navigation}) => (
-  <SafeAreaView>
-    <Text>Screen: Login</Text>
-    <Button title="Help" className="primary" />
-    <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-      <Text>Go to home</Text>
-    </TouchableHighlight>
-  </SafeAreaView>
-);
+import {Mixins, Spacing, Typography} from '_styles';
 
-export default LoginScreen;
+export default class LoginScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.navigation = props.navigation;
+    this.style = {
+      ...Mixins.padding(Spacing.SCALE_12),
+    };
+    this.headingStyle = {
+      ...Typography.FONT_BOLD,
+      fontSize: Typography.FONT_SIZE_XL,
+      textAlign: 'center',
+    };
+
+    //IMAGE STYLES//
+    this.imageStyle = {
+      alignSelf: 'center',
+      width: 100,
+      height: 100,
+    };
+  }
+  render() {
+    return (
+      <SafeAreaView style={this.style}>
+        <Text style={this.headingStyle}>Bound</Text>
+        <Image
+          source={require('_assets/images/logo.png')}
+          style={this.imageStyle}
+        />
+        <Button
+          title="Login"
+          onPress={() => this.navigation.navigate('Home')}
+          className="primary"
+        />
+      </SafeAreaView>
+    );
+  }
+}
