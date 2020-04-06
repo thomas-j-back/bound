@@ -20,6 +20,10 @@
 		96F957E04AB692280983CA46 /* libPods-mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB819A89DEA894B0E9AEC987 /* libPods-mobile-tvOS.a */; };
 		C4B873942EF09E518AEB2F73 /* libPods-mobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435DB4E78EB79F1E0369E3AC /* libPods-mobileTests.a */; };
 		EABE40F424330C8300D65A03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EABE40F324330C8300D65A03 /* GoogleService-Info.plist */; };
+		EAE4562D243ADF52003C9C9F /* Sen-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE45629243ADF52003C9C9F /* Sen-Regular.ttf */; };
+		EAE4562E243ADF52003C9C9F /* Sen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE4562A243ADF52003C9C9F /* Sen-Bold.ttf */; };
+		EAE4562F243ADF52003C9C9F /* Sen-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EAE4562B243ADF52003C9C9F /* Sen-ExtraBold.ttf */; };
+		EAE45630243ADF52003C9C9F /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = EAE4562C243ADF52003C9C9F /* OFL.txt */; };
 		ED4B87347F4455987F8BD156 /* libPods-mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 377979AB5767D6C2FC9D99CD /* libPods-mobile.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +69,10 @@
 		C96E0917BEE6635A8124EE7E /* Pods-mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-mobile-tvOS/Pods-mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		DB819A89DEA894B0E9AEC987 /* libPods-mobile-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobile-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EABE40F324330C8300D65A03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAE45629243ADF52003C9C9F /* Sen-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sen-Regular.ttf"; sourceTree = "<group>"; };
+		EAE4562A243ADF52003C9C9F /* Sen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sen-Bold.ttf"; sourceTree = "<group>"; };
+		EAE4562B243ADF52003C9C9F /* Sen-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sen-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EAE4562C243ADF52003C9C9F /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		ED0BD246BB7A3BB9835C06E0 /* Pods-mobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-mobile-tvOSTests/Pods-mobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -176,6 +184,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EAE4562C243ADF52003C9C9F /* OFL.txt */,
+				EAE4562A243ADF52003C9C9F /* Sen-Bold.ttf */,
+				EAE4562B243ADF52003C9C9F /* Sen-ExtraBold.ttf */,
+				EAE45629243ADF52003C9C9F /* Sen-Regular.ttf */,
 				EABE40F324330C8300D65A03 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* mobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -341,9 +353,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE45630243ADF52003C9C9F /* OFL.txt in Resources */,
+				EAE4562D243ADF52003C9C9F /* Sen-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EAE4562E243ADF52003C9C9F /* Sen-Bold.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				EABE40F424330C8300D65A03 /* GoogleService-Info.plist in Resources */,
+				EAE4562F243ADF52003C9C9F /* Sen-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

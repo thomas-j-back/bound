@@ -27,7 +27,7 @@ export default class Button extends Component {
     let style = {};
     let textStyle = {};
 
-    //Generate
+    //Generate styles for contained elements
     let underlayColor = Colors.PRIMARY;
     style = {
       ...style,
@@ -62,7 +62,6 @@ export default class Button extends Component {
   }
 
   render() {
-    // alert(JSON.stringify(this.state.style))
     return (
       <TouchableHighlight
         underlayColor={this.state.underlayColor}

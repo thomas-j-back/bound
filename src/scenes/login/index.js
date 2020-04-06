@@ -1,5 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text, Image} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  Image,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import Button from '_atoms/button';
 import {Mixins, Spacing, Typography} from '_styles';
 
@@ -22,20 +28,35 @@ export default class LoginScreen extends React.Component {
       width: 100,
       height: 100,
     };
+
+    this.promptCreateStyle = {
+      fontSize: Typography.FONT_SIZE_12,
+      ...Mixins.padding(Spacing.SCALE_12),
+    };
+  }
+  createAccount() {
+    return '';
   }
   render() {
     return (
-      <SafeAreaView style={this.style}>
-        <Text style={this.headingStyle}>Bound</Text>
-        <Image
-          source={require('_assets/images/logo.png')}
-          style={this.imageStyle}
-        />
-        <Button
-          title="Login"
-          onPress={() => this.navigation.navigate('Home')}
-          className="primary"
-        />
+      <SafeAreaView>
+        <View style={this.style}>
+          <Text style={this.headingStyle}>Bound</Text>
+          <Image
+            source={require('_assets/images/logo.png')}
+            style={this.imageStyle}
+          />
+          <Button
+            title="Login"
+            onPress={() => this.navigation.navigate('Home')}
+            className="primary"
+          />
+          <TouchableHighlight
+            activeOpacity={0.3}
+            onPress={this.createAccount()}>
+            <Text style={this.promptCreateStyle}>Create an account</Text>
+          </TouchableHighlight>
+        </View>
       </SafeAreaView>
     );
   }
