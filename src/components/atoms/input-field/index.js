@@ -24,13 +24,18 @@ export default class InputField extends React.Component {
     }
   }
 
+  /**
+   * Animate label on press
+   */
+  onFocus() {}
+
   render() {
     return (
       <View>
         {this.getLabel()}
         <TextInput
           placeholder={this.props.placeholder}
-          onChangeText={(text) => this.props.onChangeText(text)}
+          onChangeText={text => this.props.onChangeText(text)}
         />
       </View>
     );
