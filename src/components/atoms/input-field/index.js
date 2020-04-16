@@ -2,6 +2,7 @@
 import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {Typography, Spacing, Color} from '_styles';
+import {t} from 'react-native-tailwindcss';
 //Component to take in forms from a field, can be fitted with label or not
 export default class InputField extends React.Component {
   constructor(props) {
@@ -20,7 +21,9 @@ export default class InputField extends React.Component {
    */
   getLabel() {
     if (this.props.label) {
-      return <Text>{this.props.label}</Text>;
+      return (
+        <Text style={[t.mB4, t.fontSen, t.textSm]}>{this.props.label}</Text>
+      );
     }
   }
 
@@ -33,10 +36,7 @@ export default class InputField extends React.Component {
     return (
       <View>
         {this.getLabel()}
-        <TextInput
-          placeholder={this.props.placeholder}
-          onChangeText={text => this.props.onChangeText(text)}
-        />
+        <TextInput style={[t.mB4, t.textBase, t.fontSen]} {...this.props} />
       </View>
     );
   }

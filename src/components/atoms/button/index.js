@@ -56,6 +56,7 @@ export default class Button extends Component {
         textStyle.color = Colors.GRAY_DARK;
         underlayColor = style.backgroundColor;
     }
+    style = {...style, ...this.props.style};
     this.setState({underlayColor: underlayColor});
     this.setState({style: style});
     this.setState({textStyle: textStyle});
