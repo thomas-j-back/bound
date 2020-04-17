@@ -21,9 +21,8 @@ export default class LoginScreen extends React.Component {
       login_flow: '',
     };
   }
-  toggleNewAccount() {
-    this.setState({create_account: true});
-  }
+  /**Direct to password/email/account recovery scene or webview*/
+  triggerAccountRecovery() {}
 
   /**Returns different form states for account creation */
   renderFormFields() {
@@ -46,11 +45,41 @@ export default class LoginScreen extends React.Component {
               onChangeText={text => {}}
               className={'label'}
             />
+            <InputField
+              label="Confirm Password"
+              secureTextEntry
+              onChangeText={text => {}}
+              className={'label'}
+            />
             <Button title="Create" onPress={() => {}} className="primary" />
           </View>
         );
         break;
       case EXISTING_ACCOUNT:
+        fields = (
+          <View style={[t.p4, t.justifyCenter]}>
+            <Text style={[t.text4xl, t.textCenter, t.fontSen]}>Login</Text>
+            <InputField
+              label="Email"
+              onChangeText={text => {}}
+              className={'label'}
+            />
+            <InputField
+              label="Password"
+              secureTextEntry
+              onChangeText={text => {}}
+              className={'label'}
+            />
+            <Button title="Login" onPress={() => {}} className="primary" />
+            <TouchableHighlight
+              activeOpacity={0.3}
+              onPress={() => this.triggerAccountRecovery()}>
+              <Text style={[t.textSm, t.fontSen, t.mT4]}>
+                Forgot login information?
+              </Text>
+            </TouchableHighlight>
+          </View>
+        );
         break;
       default:
         //Render the initial state
