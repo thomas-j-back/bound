@@ -7,11 +7,14 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 import Button from '_atoms/button';
 import InputField from '_atoms/input-field';
 
 import {t} from 'react-native-tailwindcss';
+
+import {ValidatorService} from '_services';
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -20,9 +23,16 @@ export default class LoginScreen extends React.Component {
     this.state = {
       login_flow: '',
     };
+    this.validatorService = new ValidatorService();
   }
   /**Direct to password/email/account recovery scene or webview*/
   triggerAccountRecovery() {}
+
+  /**Submits account creation */
+  createAccount() {
+    let fields = {};
+    this.validatorService.validateCreateAccountFields(fields);
+  }
 
   /**Returns different form states for account creation */
   renderFormFields() {
@@ -31,9 +41,16 @@ export default class LoginScreen extends React.Component {
       case CREATE_ACCOUNT:
         fields = (
           <View style={[t.p4, t.justifyCenter]}>
-            <Text style={[t.text4xl, t.textCenter, t.fontSen]}>
-              Create Account
-            </Text>
+            <View>
+              <TouchableHighlight
+                onPress={() => this.setState({login_flow: ''})}>
+                <FontAwesomeIcon size={24} icon="arrow-left" />
+              </TouchableHighlight>
+              <Text style={[t.text4xl, t.textCenter, t.fontSen]}>
+                Create Account
+              </Text>
+            </View>
+
             <InputField
               label="Email"
               onChangeText={text => {}}
@@ -58,7 +75,17 @@ export default class LoginScreen extends React.Component {
       case EXISTING_ACCOUNT:
         fields = (
           <View style={[t.p4, t.justifyCenter]}>
-            <Text style={[t.text4xl, t.textCenter, t.fontSen]}>Login</Text>
+            <View style={[t.flexRow, t.justifyBetween, t.mB4]}>
+              <TouchableHighlight
+                onPress={() => this.setState({login_flow: ''})}>
+                <FontAwesomeIcon
+                  style={t.selfStart}
+                  size={24}
+                  icon="arrow-left"
+                />
+              </TouchableHighlight>
+              <Text style={[t.text4xl, t.selfCenter, t.fontSen]}>Login</Text>
+            </View>
             <InputField
               label="Email"
               onChangeText={text => {}}
