@@ -7,8 +7,18 @@ import {t} from 'react-native-tailwindcss';
 export default class InputField extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {};
+    this.state.error = props.error || [];
+    this.state.style = [t.mB4, t.textBase, t.fontSen];
     //Create stylings based on className property
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let error = nextProps.error;
+    if (!error) {
+      error = [];
+    }
+    this.setState({error: error});
   }
 
   generateClassStyles() {
@@ -36,7 +46,12 @@ export default class InputField extends React.Component {
     return (
       <View>
         {this.getLabel()}
-        <TextInput style={[t.mB4, t.textBase, t.fontSen]} {...this.props} />
+        {this.state.error.forEach(message => {
+          return (
+            <Text style={[t.mB4, t.fontSen, t.textSm, t.tR400]}>{message}</Text>
+          );
+        })}
+        <TextInput style={this.state.style} {...this.props} />
       </View>
     );
   }

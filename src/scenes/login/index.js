@@ -22,6 +22,15 @@ export default class LoginScreen extends React.Component {
     this.navigation = props.navigation;
     this.state = {
       login_flow: '',
+      email: {
+        value: '',
+        result: [],
+      },
+      password: {
+        value: '',
+        result: [],
+      },
+      confirm_password: {},
     };
     this.validatorService = new ValidatorService();
   }
@@ -29,9 +38,26 @@ export default class LoginScreen extends React.Component {
   triggerAccountRecovery() {}
 
   /**Submits account creation */
-  createAccount() {
-    let fields = {};
-    this.validatorService.validateCreateAccountFields(fields);
+  onSubmit() {
+    let fields = this._getFields();
+    fields = this.validatorService.validateFields(fields);
+    //set the returned validation and proceed if valid
+    alert(JSON.stringify(fields));
+
+    for (let key in fields) {
+      this.setState({key: fields[key]});
+    }
+  }
+
+  _getFields() {
+    let fields = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    if (this.state.login_flow === CREATE_ACCOUNT) {
+      fields.password.confirm_password = this.state.confirm_password.value;
+    }
+    return fields;
   }
 
   /**Returns different form states for account creation */
@@ -52,39 +78,56 @@ export default class LoginScreen extends React.Component {
             </View>
 
             <InputField
+              name="email"
               label="Email"
-              onChangeText={text => {}}
+              error={this.state.email.result}
+              onChangeText={text => {
+                let email = this.state.email;
+                email.value = text;
+                this.setState({email: email});
+              }}
               className={'label'}
             />
             <InputField
+              name="password"
               label="Password"
+              error={this.state.password.result}
               secureTextEntry
-              onChangeText={text => {}}
+              onChangeText={text => {
+                let password = this.state.password;
+                password.value = text;
+                this.setState({password: password});
+              }}
               className={'label'}
             />
             <InputField
+              name="confirm_password"
               label="Confirm Password"
               secureTextEntry
-              onChangeText={text => {}}
+              onChangeText={text => {
+                this.setState({confirm_password: {value: text}});
+              }}
               className={'label'}
             />
-            <Button title="Create" onPress={() => {}} className="primary" />
+            <Button
+              title="Create"
+              onPress={() => {
+                this.onSubmit();
+              }}
+              className="primary"
+            />
           </View>
         );
         break;
       case EXISTING_ACCOUNT:
         fields = (
           <View style={[t.p4, t.justifyCenter]}>
-            <View style={[t.flexRow, t.justifyBetween, t.mB4]}>
+            <View>
               <TouchableHighlight
                 onPress={() => this.setState({login_flow: ''})}>
-                <FontAwesomeIcon
-                  style={t.selfStart}
-                  size={24}
-                  icon="arrow-left"
-                />
+                <FontAwesomeIcon size={24} icon="arrow-left" />
               </TouchableHighlight>
-              <Text style={[t.text4xl, t.selfCenter, t.fontSen]}>Login</Text>
+              <Text style={[t.text4xl, t.textCenter, t.fontSen]}>Login</Text>
             </View>
             <InputField
               label="Email"
@@ -97,7 +140,13 @@ export default class LoginScreen extends React.Component {
               onChangeText={text => {}}
               className={'label'}
             />
-            <Button title="Login" onPress={() => {}} className="primary" />
+            <Button
+              title="Login"
+              onPress={() => {
+                this.onSubmit();
+              }}
+              className="primary"
+            />
             <TouchableHighlight
               activeOpacity={0.3}
               onPress={() => this.triggerAccountRecovery()}>

@@ -5,15 +5,15 @@ export default class ValidatorService {
   }
 
   /**validate the current criteria given */
-  validateCreateAccountFields(fields = {}) {
+  validateFields(fields = {}) {
     //Parse object with validation criteria
     for (let key in fields) {
       let field = fields[key];
       if (key === 'email') {
-        this._validateEmail(field);
+        fields[key] = this._validateEmail(field);
       }
       if (key === 'password') {
-        this._validatePassword(field);
+        fields[key] = this._validatePassword(field);
       }
     }
     return fields;
@@ -27,11 +27,12 @@ export default class ValidatorService {
     let value = email.value;
     let messages = [];
     try {
-      value.test(this.emailRegex) ? messages.push('Invalid email given') : '';
+      value.match(this.emailRegex) ? messages.push('Invalid email given') : '';
     } catch (e) {
       console.error('Invalid value for email input', e);
     }
     email.result = messages;
+    return email;
   }
 
   /**Validates password entry */
@@ -42,10 +43,11 @@ export default class ValidatorService {
 
     //Validate password through criteria
     try {
-      value.test(this.passwordRegex)
+      value.match(this.passwordRegex)
         ? messages.push('Password must include...')
         : '';
-      value.test(password.confirm_password)
+
+      password.confirm_password && value.match(password.confirm_password)
         ? messages.push('Passwords do not match')
         : '';
     } catch (e) {
@@ -53,5 +55,6 @@ export default class ValidatorService {
     }
     //Compare both passwords
     password.result = messages;
+    return password;
   }
 }
