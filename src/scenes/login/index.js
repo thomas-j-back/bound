@@ -15,6 +15,7 @@ import InputField from '_atoms/input-field';
 import {t} from 'react-native-tailwindcss';
 
 import {ValidatorService} from '_services';
+import {FirebaseService} from '_services';
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -31,8 +32,10 @@ export default class LoginScreen extends React.Component {
         result: [],
       },
       confirm_password: {},
+      valid: true,
     };
     this.validatorService = new ValidatorService();
+    this.FirebaseService = new FirebaseService();
   }
   /**Direct to password/email/account recovery scene or webview*/
   triggerAccountRecovery() {}
@@ -44,8 +47,14 @@ export default class LoginScreen extends React.Component {
     //set the returned validation and proceed if valid
     alert(JSON.stringify(fields));
 
+    //TODO Set any errors in the form on return
+
+    //After that depending on the flow the  continue
     for (let key in fields) {
       this.setState({key: fields[key]});
+      if (fields[key].message) {
+        this.setState({valid: false});
+      }
     }
   }
 
@@ -80,7 +89,7 @@ export default class LoginScreen extends React.Component {
             <InputField
               name="email"
               label="Email"
-              error={this.state.email.result}
+              errors={this.state.email.result}
               onChangeText={text => {
                 let email = this.state.email;
                 email.value = text;
@@ -91,7 +100,7 @@ export default class LoginScreen extends React.Component {
             <InputField
               name="password"
               label="Password"
-              error={this.state.password.result}
+              errors={this.state.password.result}
               secureTextEntry
               onChangeText={text => {
                 let password = this.state.password;

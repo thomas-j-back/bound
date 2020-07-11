@@ -1,3 +1,3 @@
 import ValidatorService from './validation';
-
-export {ValidatorService};
+import FirebaseService from './firebase-service';
+export {ValidatorService, FirebaseService};
