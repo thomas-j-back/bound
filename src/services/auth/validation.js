@@ -49,8 +49,8 @@ export default class ValidatorService {
 
       if (password.confirm_password) {
         value === password.confirm_password
-          ? messages.push('Passwords do not match')
-          : '';
+          ? ''
+          : messages.push('Passwords do not match');
       }
     } catch (e) {
       console.error('Invalid format for password input', e);
