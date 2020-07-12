@@ -44,20 +44,31 @@ export default class LoginScreen extends React.Component {
   onSubmit() {
     let fields = this._getFields();
     fields = this.validatorService.validateFields(fields);
-    //set the returned validation and proceed if valid
-    alert(JSON.stringify(fields));
 
-    //TODO Set any errors in the form on return
+    //set the returned validation and proceed if valid
+    this._setInvalidFields(fields);
 
     //After that depending on the flow the  continue
-    for (let key in fields) {
-      this.setState({key: fields[key]});
-      if (fields[key].message) {
-        this.setState({valid: false});
+    if (this.state.valid) {
+      //Based on login flow create account or login
+      const opts = {
+        email: fields.email.value,
+        password: fields.password.value,
+      };
+      switch (this.state.login_flow) {
+        case CREATE_ACCOUNT:
+          this.FirebaseService.createAccount(opts);
+          break;
+        case EXISTING_ACCOUNT:
+          this.FirebaseService.signIn(opts);
+          break;
       }
     }
   }
 
+  /**
+   * Gather the fields
+   */
   _getFields() {
     let fields = {
       email: this.state.email,
@@ -67,6 +78,28 @@ export default class LoginScreen extends React.Component {
       fields.password.confirm_password = this.state.confirm_password.value;
     }
     return fields;
+  }
+
+  /**
+   * Will set the returns for
+   * the field validation
+   * whether is be valid or error
+   * @param {*} fields
+   */
+  _setInvalidFields(fields) {
+    let i = 0;
+    for (let key in fields) {
+      this.setState({key: fields[key]});
+      //If invalid set as invalid
+      if (fields[key].message) {
+        this.setState({valid: false});
+        i++;
+      }
+      //else if
+    }
+    if (i == 0) {
+      this.setState({valid: true});
+    }
   }
 
   /**Returns different form states for account creation */
