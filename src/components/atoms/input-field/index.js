@@ -46,7 +46,7 @@ export default class InputField extends React.Component {
     return (
       <View>
         {this.getLabel()}
-        {this.state.errors.forEach(message => {
+        {this.state.errors.map(message => {
           return (
             <Text style={[t.mB4, t.fontSen, t.textSm, t.tR400]}>{message}</Text>
           );

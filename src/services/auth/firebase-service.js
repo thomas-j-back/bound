@@ -27,6 +27,9 @@ export default class FirebaseService {
       .createUserWithEmailAndPassword(opts.email, opts.password)
       .then(() => {
         alert('Account created!');
+      })
+      .catch(e => {
+        console.error(e);
       });
   }
 }

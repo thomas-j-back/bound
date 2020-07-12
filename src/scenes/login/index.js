@@ -44,12 +44,12 @@ export default class LoginScreen extends React.Component {
   onSubmit() {
     let fields = this._getFields();
     fields = this.validatorService.validateFields(fields);
-
+    //alert(JSON.stringify(fields));
     //set the returned validation and proceed if valid
-    this._setInvalidFields(fields);
+    const valid = this._setInvalidFields(fields);
 
     //After that depending on the flow the  continue
-    if (this.state.valid) {
+    if (valid) {
       //Based on login flow create account or login
       const opts = {
         email: fields.email.value,
@@ -87,19 +87,16 @@ export default class LoginScreen extends React.Component {
    * @param {*} fields
    */
   _setInvalidFields(fields) {
-    let i = 0;
+    let valid = true;
     for (let key in fields) {
       this.setState({key: fields[key]});
       //If invalid set as invalid
-      if (fields[key].message) {
-        this.setState({valid: false});
-        i++;
+      if (fields[key].result && fields[key].result.length) {
+        valid = false;
       }
       //else if
     }
-    if (i == 0) {
-      this.setState({valid: true});
-    }
+    return valid;
   }
 
   /**Returns different form states for account creation */
